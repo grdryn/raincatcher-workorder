@@ -1,6 +1,6 @@
 {
   "name": "fh-wfm-workorder",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "An workorder module for WFM",
   "main": "lib/angular/workorder-ng.js",
   "scripts": {
