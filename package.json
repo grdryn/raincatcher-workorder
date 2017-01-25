@@ -33,10 +33,13 @@
     "fh-wfm-mediator": "0.0.15",
     "fh-wfm-template-build": "0.0.9",
     "grunt": "^1.0.1",
+    "grunt-mocha-test": "^0.13.2",
     "grunt-eslint": "^18.0.0",
     "mocha": "2.4.5",
-    "nsp": "^2.6.2",
+    "proxyquire": "1.7.4",
     "request": "2.69.0",
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.2",
     "should": "8.3.0"
   }
 }
