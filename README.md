@@ -7,9 +7,7 @@ This module contains a workorder model representation and its related services :
 
 ## Client-side usage
 
-### Client-side usage (via broswerify)
-
-#### Setup
+### Setup
 This module is packaged in a CommonJS format, exporting the name of the Angular namespace.  The module can be included in an angular.js as follows:
 
 ```javascript
@@ -19,9 +17,9 @@ angular.module('app', [
 ])
 ```
 
-#### Integration
+### Integration
 
-##### Angular controller
+#### Angular controller
 A sync manager must first be initialized using the `workorderSync.createManager()`.  This can be placed, for instance, in the `resolve` config of a `ui-router` controlled application.
 
 ```javascript
@@ -34,7 +32,7 @@ resolve: {
 For a more complete example, please check the [demo portal app](https://github.com/feedhenry-raincatcher/raincatcher-demo-portal/blob/master/src/app/main.js).
 
 
-##### `workorderSync` API
+#### `workorderSync` Manager API
 These workorderSync API methods all return Promises:
 
 | workorderSync method | Description |
@@ -43,8 +41,9 @@ These workorderSync API methods all return Promises:
 | `workorderSync.manager.create(workorder)` | create a workorder |
 | `workorderSync.manager.read(workorderId)` | read a workorder |
 | `workorderSync.manager.update(workorder)` | update a workorder |
+| `workorderSync.manager.delete(workorder)` | delete a workorder |
 
-#### Workorder directives
+### Workorder directives
 
 | Name | Attributes |
 | ---- | ----------- |
@@ -54,6 +53,148 @@ These workorderSync API methods all return Promises:
 | workorder-status | status |
 | workorder-sunbmission-result | result, step |
 
+### Topic Subscriptions
+
+#### wfm:workorders:create
+
+##### Description
+
+Creating a new Workorder
+
+##### Example
+
+
+```javascript
+var parameters = {
+  workorderToCreate: {
+    //A Valid JSON Object
+  },
+  //Optional topic unique identifier.
+  topicUid: "uniquetopicid"
+}
+
+mediator.publish("wfm:workorders:create", parameters);
+```
+
+#### wfm:workorders:read
+
+##### Description
+
+Read a single Workorder
+
+##### Example
+
+
+```javascript
+var parameters = {
+  id: "workorderId",
+  //Optional topic unique identifier.
+  topicUid: "uniquetopicid"
+}
+
+mediator.publish("wfm:workorders:read", parameters);
+```
+
+#### wfm:workorders:update
+
+##### Description
+
+Update a single Workorder
+
+##### Example
+
+
+```javascript
+var parameters = {
+  workorderToUpdate: {
+    ...
+    id: "workorderId"
+    ...
+  },
+  //Optional topic unique identifier.
+  topicUid: "uniquetopicid"
+}
+
+mediator.publish("wfm:workorders:update", parameters);
+```
+
+
+#### wfm:workorders:remove
+
+##### Description
+
+Remove a single Workorder
+
+##### Example
+
+
+```javascript
+var parameters = {
+  id: "workorderId",
+  //Optional topic unique identifier.
+  topicUid: "uniquetopicid"
+}
+
+mediator.publish("wfm:workorders:remove", parameters);
+```
+
+
+#### wfm:workorders:list
+
+##### Description
+
+List All Workorders
+
+##### Example
+
+
+```javascript
+var parameters = {
+  //Optional topic unique identifier.
+  topicUid: "uniquetopicid"
+}
+
+mediator.publish("wfm:workorders:list", parameters);
+```
+
+
+### Published Topics
+
+The following topics are published by this module. Developers are free to implement these topics subscribers, or use a module that already has these subscribers implement (E.g. the [raincatcher-sync](https://github.com/feedhenry-raincatcher/raincatcher-sync) module).
+
+
+| Topic         | Description           |
+| ------------- |:-------------:| 
+| wfm:sync:workorders:create              |   Create a new item in the sync `workorders` collection |
+| wfm:sync:workorders:update              |   Update an existing item in the sync `workorders` collection |
+| wfm:sync:workorders:list              |   List all items in the sync `workorders` collection |
+| wfm:sync:workorders:remove              |   Remove an existing item from the sync `workorders` collection |
+| wfm:sync:workorders:read              |   Read a single item from the sync `workorders` collection |
+| wfm:sync:workorders:start              |   Start the sync process for sync `workorders` collection |
+| wfm:sync:workorders:stop              |   Stop the sync process for sync `workorders` collection |
+| wfm:sync:workorders:force_sync        |   Force a sync cycle from client to cloud for sync `workorders` collection |
+
+
+### Topic Subscriptions
+
+| Topic         | Description           |
+| ------------- |:-------------:| 
+| done:wfm:sync:workorders:create        |   A workorder was created in the `workorders` dataset |
+| error:wfm:sync:workorders:create        |   An error occurred when creating an item in the `workorders` dataset. |
+| done:wfm:sync:workorders:update        |   A workorder was updated in the `workorders` dataset |
+| error:wfm:sync:workorders:update        |   An error occurred when updating an item in the `workorders` dataset. |
+| done:wfm:sync:workorders:list        |   A list of the items in the `workorders` dataset completed |
+| error:wfm:sync:workorders:list        |   An error occurred when listing items in the `workorders` dataset. |
+| done:wfm:sync:workorders:remove        |   A workorder was removed from the `workorders` dataset |
+| error:wfm:sync:workorders:remove        |   An error occurred when removing an item in the `workorders` dataset. |
+| done:wfm:sync:workorders:read        |   A item was read correctly from the `workorders` dataset |
+| error:wfm:sync:workorders:read        |   An error occurred when reading an item in the `workorders` dataset. |
+| done:wfm:sync:workorders:start        |   The sync process started for the `workorders` dataset. |
+| error:wfm:sync:workorders:start        |   An error occurred when starting the `workorders` dataset. |
+| done:wfm:sync:workorders:stop        |   The sync process stopped for the `workorders` dataset. |
+| error:wfm:sync:workorders:stop        |   An error occurred when stopping the `workorders` dataset sync process. |
+| done:wfm:sync:workorders:force_sync        |  A force sync process completed for the `workorders` dataset. |
+| error:wfm:sync:workorders:force_sync        |   An error occurred when forcing the sync process for the `workorders` dataset. |
 
 ## Usage in an express backend
 
