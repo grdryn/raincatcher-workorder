@@ -3,7 +3,6 @@
 This module contains a workorder model representation and its related services :
 - Backend services
 - Frontend services
-- Frontend UI templates
 
 ## Client-side usage
 
@@ -31,27 +30,6 @@ resolve: {
 ```
 For a more complete example, please check the [demo portal app](https://github.com/feedhenry-raincatcher/raincatcher-demo-portal/blob/master/src/app/main.js).
 
-
-#### `workorderSync` Manager API
-These workorderSync API methods all return Promises:
-
-| workorderSync method | Description |
-| -------------------- | ----------- |
-| `workorderSync.manager.list` | list all workorders |
-| `workorderSync.manager.create(workorder)` | create a workorder |
-| `workorderSync.manager.read(workorderId)` | read a workorder |
-| `workorderSync.manager.update(workorder)` | update a workorder |
-| `workorderSync.manager.delete(workorder)` | delete a workorder |
-
-### Workorder directives
-
-| Name | Attributes |
-| ---- | ----------- |
-| workorder-list | workorders, resultMap, selectedModel |
-| workorder | workorder, assignee, status |
-| workorder-form | value, workflows, workers |
-| workorder-status | status |
-| workorder-sunbmission-result | result, step |
 
 ### Topic Subscriptions
 
